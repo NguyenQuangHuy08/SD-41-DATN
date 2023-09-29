@@ -17,6 +17,8 @@
 <body>
 <div class="container">
     <h3 style="text-align: center;">List chương trình giảm giá hóa đơn</h3>
+    <label>${message}</label>
+    <label>${erFind}</label>
     <table>
         <thead>
         <tr>
@@ -33,7 +35,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="hd" items="${list}" varStatus="i">
+        <c:forEach var="hd" items="${listPage}" varStatus="i">
             <tr>
                 <th style="padding-top: 40px" scope="row">${i.index+1}</th>
                 <td style="padding-top: 55px; text-align: center">${hd.tenChuongTrinh}</td>
@@ -45,12 +47,19 @@
                 <td style="padding-top: 55px; text-align: center">${hd.ghiChu}</td>
                 <td style="padding-top: 55px; text-align: center">${hd.trangThai==1 ?"Chưa hết hạn" : "Hết hạn"}</td>
                 <td>
-                    <a class="" href="${pageContext.request.contextPath}"><button style="margin-top: 40px" class="btn-primary">Edit</button></a>
-                </td>
+                       <a class="col-sm-4" href="${pageContext.request.contextPath}/ChuongTrinhGiamGiaHoaDon/edit/${hd.id}"><button class="btn btn-primary">Edit</button></a>
+                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+        <ul class="pagination" style="margin-left: 500px">
+            <c:forEach begin="1" end="${totalPage}" varStatus="status">
+                <li class="page-item">
+                    <a href="${pageContext.request.contextPath}/ChuongTrinhGiamGiaHoaDon/list?pageNum=${status.index}" class="page-link">${status.index}</a>
+                </li>
+            </c:forEach>
+        </ul>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

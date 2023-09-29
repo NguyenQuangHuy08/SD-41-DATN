@@ -28,20 +28,31 @@
             <div class="row">
                 <div class="col-6">
                     <label style="margin-left: 30px">Tên chương trình</label>
-                    <frm:input path="tenChuongTrinh" cssStyle="width: 300px;"  value=""/>
+                    <frm:input path="tenChuongTrinh" cssStyle="width: 300px;" placeholder="text" value=""/>
+                    <frm:errors path="tenChuongTrinh"></frm:errors>
+                    <label class="">${erCheckTenSanPham}</label>
                 </div>
                 <div class="col-6">
                     <label style="margin-left: 150px; margin-right: 30px; margin-bottom: 30px">Phần trăm giảm </label>
                     <frm:input path="phanTramGiam" cssStyle="width: 200px;"  value=""/>
+                    <label>${erCheckPhanTramGiam}</label>
+                    <label>${erCheckPhanTramGiamNumber}</label>
+                    <label>${erCheckPhanTramGiamString}</label>
                 </div>
 
                 <div class="col-6">
                     <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Số lượng</label>
-                    <frm:input path="soLuongSanPham" cssStyle="width: 200px;" type="" value=""/>
+                    <frm:input path="soLuongSanPham" cssStyle="width: 200px;" value=""/>
+                    <label>${erCheckSoLuong}</label>
+                    <label>${erCheckSoLuongNumber}</label>
+                    <label>${erCheckSoLuongString}</label>
                 </div>
                 <div class="col-6">
                     <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Số tiền hóa đơn cần đạt</label>
                     <frm:input path="soTienHoaDon" cssStyle="width: 200px;" type="" value=""/>
+                    <label>${erCheckSoTienHoaDon}</label>
+                    <label>${erCheckNumber}</label>
+                    <label>${erCheckNumberString}</label>
                 </div>
                 <div class="col-6">
                     <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Ngày bắt đầu</label>
@@ -51,6 +62,14 @@
                     <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Ngày kết thúc</label>
                     <frm:input path="ngayKetThuc" cssStyle="width: 200px;" type="date" value=""/>
                         <%--                                <div class="textTitle"><frm:errors cssStyle="margin-left: 400px; color: red" class="errors" path="name" /></div>--%>
+                </div>
+                <div class="col-6">
+                    <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Ghi chú</label>
+<%--                    <frm:textarea id="long-text" name="long-text" rows="4" cols="50"></frm:textarea>--%>
+                    <frm:input path="ghiChu" cssStyle="width: 200px;" type=""  value=""/>
+<%--                    <textarea id="long-text" path="ghiChu" name="long-text" rows="4" cols="50"></textarea>--%>
+
+                <%--                                <div class="textTitle"><frm:errors cssStyle="margin-left: 400px; color: red" class="errors" path="name" /></div>--%>
                 </div>
                 <div class="col-6">
                     <label style="margin-left: 27px; margin-right: 25px; margin-bottom: 50px">Trạng thái</label>
@@ -65,6 +84,7 @@
                 </div>
             </div>
             <button type="submit" onclick="if (!confirm('Bạn chắc chắn muốn thêm không ?')){return false;}else{return true;}" style="margin-left: 400px; margin-bottom: 190px" class="btn btn-primary">Create</button>
+            <label>${message}</label>
         </frm:form>
     </div>
 </div>

@@ -18,16 +18,16 @@ public class ChuongTrinhGiamGiaHoaDon {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "Id_ChuongTrinhGiamGiaHoaDon")
-    private UUID Id_ChuongTrinhGiamGiaHoaDon;
+    private UUID id;
 
     @Column(name = "tenChuongTrinh")
     private String tenChuongTrinh;
 
     @Column(name = "phanTramGiam")
-    private int phanTramGiam;
+    private String phanTramGiam;
 
     @Column(name = "soLuongSanPham")
-    private int soLuongSanPham;
+    private String soLuongSanPham;
 
     @Column(name = "soTienHoaDon")
     private BigDecimal soTienHoaDon;

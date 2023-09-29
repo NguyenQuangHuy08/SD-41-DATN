@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="frm"%>
 
 <!doctype html>
 <html lang="en">
@@ -16,41 +17,62 @@
 </head>
 <body>
 <div class="container">
-    <h3 style="text-align: center;">List chương trình giảm giá hóa đơn</h3>
-    <table>
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Tên Chương trình</th>
-            <th scope="col">Phần trăm giảm</th>
-            <th scope="col">Số lượng</th>
-            <th scope="col">Số tiền hóa đơn cần đạt</th>
-            <th scope="col">Ngày bắt đầu</th>
-            <th scope="col">Ngày kết thúc</th>
-            <th scope="col">Ghi chú</th>
-            <th scope="col">Trạng thái</th>
-            <th scope="col">Functions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="hd" items="${list}" varStatus="i">
-            <tr>
-                <th style="padding-top: 40px" scope="row">${i.index+1}</th>
-                <td style="padding-top: 55px; text-align: center">${hd.tenChuongTrinh}</td>
-                <td style="padding-top: 55px; text-align: center">${hd.phanTramGiam}%</td>
-                <td style="padding-top: 55px; text-align: center">${hd.soLuongSanPham}</td>
-                <td style="padding-top: 55px; text-align: center">${hd.soTienHoaDon} VNĐ</td>
-                <td style="padding-top: 55px; text-align: center">${hd.ngayBatDau}</td>
-                <td style="padding-top: 55px; text-align: center">${hd.ngayKetThuc}</td>
-                <td style="padding-top: 55px; text-align: center">${hd.ghiChu}</td>
-                <td style="padding-top: 55px; text-align: center">${hd.trangThai==1 ?"Chưa hết hạn" : "Hết hạn"}</td>
-                <td>
-                    <a class="" href="${pageContext.request.contextPath}"><button style="margin-top: 40px" class="btn-primary">Edit</button></a>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+    <h3 style="text-align: center;">Edit dữ liệu chương trình giảm giá hóa đơn</h3>
+    <frm:form
+            modelAttribute="chuongTrinhGiamGiaHoaDon"
+            action="${pageContext.request.contextPath}/ChuongTrinhGiamGiaHoaDon/create"
+            method="POST"
+            enctype="multipart/form-data">
+        <div class="form-group">
+            <frm:hidden path="id" value="${chuongTrinhGiamGiaHoaDon.id}"/>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label style="margin-left: 30px">Tên chương trình</label>
+                <frm:input path="tenChuongTrinh" cssStyle="width: 300px;" value = "${chuongTrinhGiamGiaHoaDon.tenChuongTrinh}" />
+            </div>
+            <div class="col-6">
+                <label style="margin-left: 150px; margin-right: 30px; margin-bottom: 30px">Phần trăm giảm </label>
+                <frm:input path="phanTramGiam" cssStyle="width: 200px;" value = "${chuongTrinhGiamGiaHoaDon.phanTramGiam}" />
+            </div>
+
+            <div class="col-6">
+                <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Số lượng</label>
+                <frm:input path="soLuongSanPham" cssStyle="width: 200px;" type="" value = "${chuongTrinhGiamGiaHoaDon.soLuongSanPham}" />
+            </div>
+            <div class="col-6">
+                <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Số tiền hóa đơn cần đạt</label>
+                <frm:input path="soTienHoaDon" cssStyle="width: 200px;" type="" value = "${chuongTrinhGiamGiaHoaDon.soTienHoaDon}" />
+            </div>
+            <div class="col-6">
+                <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Ngày bắt đầu</label>
+                <frm:input path="ngayBatDau" cssStyle="width: 200px;" type="date" value = "${chuongTrinhGiamGiaHoaDon.ngayBatDau}" />
+            </div>
+            <div class="col-6">
+                <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Ngày kết thúc</label>
+                <frm:input path="ngayKetThuc" cssStyle="width: 200px;" type="date" value = "${chuongTrinhGiamGiaHoaDon.ngayKetThuc}"/>
+                    <%--                                <div class="textTitle"><frm:errors cssStyle="margin-left: 400px; color: red" class="errors" path="name" /></div>--%>
+            </div>
+            <div class="col-6">
+                <label style="margin-left: 150px; margin-right: 66px; margin-bottom: 30px">Ghi chú</label>
+                <frm:input path="ghiChu" cssStyle="width: 200px;" type="" value = "${chuongTrinhGiamGiaHoaDon.ghiChu}" />
+                    <%--                                <div class="textTitle"><frm:errors cssStyle="margin-left: 400px; color: red" class="errors" path="name" /></div>--%>
+            </div>
+            <div class="col-6">
+                <label style="margin-left: 27px; margin-right: 25px; margin-bottom: 50px">Trạng thái</label>
+                <frm:select path="trangThai" cssStyle="width: 200px;">
+                    <option value="1">
+                        Chưa hết hạn
+                    </option>
+                    <option value="0">
+                        Hết hạn
+                    </option>
+                </frm:select>
+            </div>
+        </div>
+        <button type="submit" onclick="if (!confirm('Bạn chắc chắn muốn thêm không ?')){return false;}else{return true;}" style="margin-left: 400px; margin-bottom: 190px" class="btn btn-primary">Update</button>
+    </frm:form>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
