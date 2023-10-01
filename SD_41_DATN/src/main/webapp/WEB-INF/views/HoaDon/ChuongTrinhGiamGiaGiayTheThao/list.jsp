@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="container">
-    <h3 style="text-align: center;">List chương trình giảm giá hóa đơn</h3>
+    <h3 style="text-align: center;">List chương trình giảm giá giầy thể thao </h3>
     <br>
     <div class="" style="margin-top: 30px; margin-bottom: 30px">
     <h1>Tìm kiếm sản phẩm</h1>
@@ -48,7 +48,7 @@
 <%--            Không tìm thầy sản phẩm--%>
             <label>${messageErFind}</label>
             <label>${message}</label>
-    <label>${messageErFindSoLuong}</label>
+            <label>${messageErFindSoLuong}</label>
 
     </div>
 
@@ -57,10 +57,8 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Tên Chương trình</th>
+            <th scope="col">Tên Chương trình giảm giá</th>
             <th scope="col">Phần trăm giảm</th>
-            <th scope="col">Số lượng</th>
-            <th scope="col">Số tiền hóa đơn cần đạt</th>
             <th scope="col">Ngày bắt đầu</th>
             <th scope="col">Ngày kết thúc</th>
             <th scope="col">Ghi chú</th>
@@ -72,16 +70,14 @@
         <c:forEach var="hd" items="${listPage}" varStatus="i">
             <tr>
                 <th style="padding-top: 40px" scope="row">${i.index+1}</th>
-                <td style="padding-top: 55px; text-align: center">${hd.tenChuongTrinh}</td>
+                <td style="padding-top: 55px; text-align: center">${hd.tenChuongTrinhGiamGia}</td>
                 <td style="padding-top: 55px; text-align: center">${hd.phanTramGiam}%</td>
-                <td style="padding-top: 55px; text-align: center">${hd.soLuongSanPham}</td>
-                <td style="padding-top: 55px; text-align: center">${hd.soTienHoaDon} VNĐ</td>
                 <td style="padding-top: 55px; text-align: center">${hd.ngayBatDau}</td>
                 <td style="padding-top: 55px; text-align: center">${hd.ngayKetThuc}</td>
                 <td style="padding-top: 55px; text-align: center">${hd.ghiChu}</td>
                 <td style="padding-top: 55px; text-align: center">${hd.trangThai==1 ?"Chưa hết hạn" : "Hết hạn"}</td>
                 <td>
-                       <a class="col-sm-4" href="${pageContext.request.contextPath}/ChuongTrinhGiamGiaHoaDon/edit/${hd.id}"><button class="btn btn-primary">Edit</button></a>
+                       <a class="col-sm-4" href="${pageContext.request.contextPath}/ChuongTrinhGiamGiaGiayTheThao/edit/${hd.id}"><button class="btn btn-primary">Edit</button></a>
                  </td>
             </tr>
         </c:forEach>
@@ -90,7 +86,7 @@
         <ul class="pagination" style="margin-left: 500px">
             <c:forEach begin="1" end="${totalPage}" varStatus="status">
                 <li class="page-item">
-                    <a href="${pageContext.request.contextPath}/ChuongTrinhGiamGiaHoaDon/list?pageNum=${status.index}" class="page-link">${status.index}</a>
+                    <a href="${pageContext.request.contextPath}/ChuongTrinhGiamGiaGiayTheThao/list?pageNum=${status.index}" class="page-link">${status.index}</a>
                 </li>
             </c:forEach>
         </ul>

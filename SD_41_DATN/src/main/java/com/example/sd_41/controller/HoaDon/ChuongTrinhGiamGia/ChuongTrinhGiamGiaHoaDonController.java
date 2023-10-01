@@ -1,7 +1,8 @@
-package com.example.sd_41.controller.HoaDon.ChuongTrinhGiamGiaHoaDon;
+package com.example.sd_41.controller.HoaDon.ChuongTrinhGiamGia;
 
 import com.example.sd_41.model.ChuongTrinhGiamGiaHoaDon;
-import com.example.sd_41.repository.HoaDon.ChuongTrinhGiamGiaHoaDon.ChuongTrinhGiamGiaHoaDonRepository;
+import com.example.sd_41.repository.HoaDon.ChuongTrinhGiamGia.ChuongTrinhGiamGiaHoaDonRepository;
+import com.example.sd_41.service.HoaDon.ChuongTrinhGiamGiaHoaDon.ChuongTrinhGiamGiaHoaDonService;
 import jakarta.servlet.ServletContext;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/ChuongTrinhGiamGiaHoaDon")
@@ -31,11 +31,14 @@ public class ChuongTrinhGiamGiaHoaDonController {
     @Autowired
     private ChuongTrinhGiamGiaHoaDonRepository chuongTrinhGiamGiaHoaDonRepository;
 
+    @Autowired
+    private ChuongTrinhGiamGiaHoaDonService chuongTrinhGiamGiaHoaDonService;
+
     //Todo code list
     @GetMapping("list")
     public String viewSanPham(Model model,
                               @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                              @RequestParam(name = "pageSize", required = false, defaultValue = "3") Integer pageSize
+                              @RequestParam(name = "pageSize", required = false, defaultValue = "6") Integer pageSize
 
     ){
 
@@ -187,8 +190,8 @@ public class ChuongTrinhGiamGiaHoaDonController {
 
         if(chuongTrinhGiamGiaHoaDon ==null){
 
-                model.addAttribute("erFind","Không tìm thấy id có mã: "+id);
-            return "/HoaDon/ChuongTrinhGiamGiaHoaDon/list";
+                model.addAttribute("messageFind","Không tìm thấy id có mã: "+id);
+                return "/HoaDon/ChuongTrinhGiamGiaHoaDon/list";
 
         }
 
@@ -197,9 +200,73 @@ public class ChuongTrinhGiamGiaHoaDonController {
 
     }
 
-    //Todo Code sreach
+    //Todo Code search
+
+    @GetMapping("/search")
+    public String searchProducts(
+            @RequestParam(value = "tenChuongTrinh", required = false) String tenChuongTrinh,
+            @RequestParam(value = "phanTramGiam", required = false) String phanTramGiam,
+            @RequestParam(value = "soLuongSanPham", required = false) String soLuongSanPham,
+            @RequestParam(value = "soTienHoaDon", required = false) BigDecimal soTienHoaDon,
+            Model model) {
+
+        List<ChuongTrinhGiamGiaHoaDon> listPage;
+
+        if (tenChuongTrinh != null
+                || soLuongSanPham != null
+                || phanTramGiam != null
+                || soTienHoaDon != null) {
+
+            //Tìm thấy
+            listPage = chuongTrinhGiamGiaHoaDonService.findChuongTrinhGiamGiaHoaDon(tenChuongTrinh, soLuongSanPham, phanTramGiam, soTienHoaDon);
+
+        } else {
+            // Trường hợp không có tham số được cung cấp, bạn có thể trả về toàn bộ danh sách sản phẩm
+            //Không tìm thấy thì trả về list
+            listPage = chuongTrinhGiamGiaHoaDonRepository.findAll();
+
+        }
+
+        if (!listPage.isEmpty()) {
+
+            model.addAttribute("listPage", listPage);
+
+        } else {
+
+            model.addAttribute("message", "Không tìm thấy kết quả.");
+            listPage = chuongTrinhGiamGiaHoaDonRepository.findAll();
+
+        }
+
+        //Tìm kiếm số lượng
+
+//        if(soLuongSanPham !=null){
+//
+//            try{
+//
+//                int soLuongSanPhamInt = Integer.parseInt(soLuongSanPham);
+//
+//                // Gọi phương thức tìm kiếm bằng số nguyên soLuongSanPhamInt
+//                List<ChuongTrinhGiamGiaHoaDon> ketQuaTimKiem = chuongTrinhGiamGiaHoaDonService.findChuongTrinhGiamGiaHoaDonBySoLuongSanPham(soLuongSanPhamInt);
+//
+//                model.addAttribute("ketQuaTimKiem", ketQuaTimKiem);
+//                listPage = chuongTrinhGiamGiaHoaDonRepository.findAll();
+//
+//            }catch (NumberFormatException e){
+//
+//                e.printStackTrace();
+//
+//            }
+//
+//        }
 
 
+
+        model.addAttribute("listPage", listPage);
+
+        return "/HoaDon/ChuongTrinhGiamGiaHoaDon/list";
+
+    }
 
 
 }
