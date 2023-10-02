@@ -424,6 +424,17 @@ insert into ChuongTrinhGiamGiaHoaDon(tenChuongTrinh, phanTramGiam , soLuongSanPh
 insert into ChuongTrinhGiamGiaHoaDon(tenChuongTrinh, phanTramGiam , soLuongSanPham , soTienHoaDon , ngayBatDau , ngayKetThuc , ghiChu ,ngayTao, trangThai) values(N'Chương trình khai chương quán',5,4,300000,'2023-09-27','2023-10-01',N'Chương trình giảm giá có hạn','2023-09-27',1)
 
 
-
 select * from ChuongTrinhGiamGiaHoaDon
----delete from ChuongTrinhGiamGiaHoaDon where Id_ChuongTrinhGiamGiaHoaDon = 'D3A1A8DC-D6C4-44B5-BB2A-AB696A5424D9'
+---delete from ChuongTrinhGiamGiaHoaDon where Id_ChuongTrinhGiamGiaHoaDon = '20750783-4D49-4C6E-8CEA-FD720529EA35'
+---delete from ChuongTrinhGiamGiaHoaDon
+
+
+---insert dữ liệu bảng chương trình giảm giá giầy thể thao
+insert into ChuongTrinhGiamGiaGiayTheThao(tenChuongTrinhGiamGia, phanTramGiam , ngayBatDau , ngayKetThuc , ghiChu ,ngayTao, trangThai) values(N'Chương trình giảm giá giầy thể thao 1/6',5,'2023-09-27','2023-10-01',N'Chương trình giảm giá có hạn','2023-09-27',1)
+insert into ChuongTrinhGiamGiaGiayTheThao(tenChuongTrinhGiamGia, phanTramGiam , ngayBatDau , ngayKetThuc , ghiChu ,ngayTao, trangThai) values(N'Chương trình giảm giá giầy thể thao 2/6',8,'2023-09-27','2023-10-01',N'','2023-09-27',1)
+insert into ChuongTrinhGiamGiaGiayTheThao(tenChuongTrinhGiamGia, phanTramGiam , ngayBatDau , ngayKetThuc , ghiChu ,ngayTao, trangThai) values(N'Chương trình giảm giá giầy thể thao ngày 6/6',7,'2023-09-27','2023-10-01',N'','2023-09-27',0)
+insert into ChuongTrinhGiamGiaGiayTheThao(tenChuongTrinhGiamGia, phanTramGiam , ngayBatDau , ngayKetThuc , ghiChu ,ngayTao, trangThai) values(N'Chương trình giảm giá giầy thể thao ngày vàng nhân đôi 1/1',10,'2023-09-27','2023-10-01',N'','2023-09-27',1)
+
+select * from ChuongTrinhGiamGiaGiayTheThao
+---delete from ChuongTrinhGiamGiaGiayTheThao where Id_ChuongTrinhGiamGiaGiayTheThao 
+---delete from ChuongTrinhGiamGiaGiayTheThao
