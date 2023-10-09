@@ -80,24 +80,29 @@ public class SizeController {
         sizeService.delete(id);
         return "redirect:/size/hien-thi";
     }
-//    @GetMapping
-//    public String view(Model model
-//            , @RequestParam(defaultValue = "1") int page
-//            , @RequestParam(required = false) String id ) {
-//
-//        Page<Size> pageSize;
-//
-//        if (page < 1) page = 1;
-//
-//        Pageable pageable = PageRequest.of(page - 1, 2);
-//        if (id == null || id.isBlank()) {
-//            pageSize = repository.findAll(pageable);
-//        } else {
-//            pageSize = repository.findByidContains(id, pageable);
-//        }
-//
-//        model.addAttribute("page", pageSize);
-//        return "size/hien-thi";
-//    }
+    @GetMapping
+    public String view(Model model
+            , @RequestParam(defaultValue = "1") int page
+            , @RequestParam(required = false) String id ) {
+
+        Page<Size> pageSize;
+
+        List<Size> totalElements = sizeService.getAll();
+        model.addAttribute("totalElements",totalElements);
+
+        if (page < 1) page = 1;
+
+        Pageable pageable = PageRequest.of(page - 1, 2);
+
+        if (id == null || id.isBlank()) {
+            pageSize = repository.findAll(pageable);
+        } else {
+            pageSize = repository.findByidContains(id, pageable);
+        }
+
+        model.addAttribute("getTotalElements", pageSize.getTotalElements());
+        model.addAttribute("size", pageSize);
+        return "size/hien-thi";
+    }
 
 }

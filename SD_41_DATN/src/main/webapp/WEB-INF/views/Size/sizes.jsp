@@ -29,12 +29,12 @@
     <button type="submit">add</button>
 </form>
 <br>
-<%--<c:if test="${page.isEmpty()}">--%>
-<%--    <h2>Not found any record!!</h2>--%>
-<%--</c:if>--%>
-<%--<c:if test="${not page.isEmpty()}">--%>
-<%--<p>Found ${page.getTotalElements()} records</p>--%>
-<%--<button><a href="/chat-lieu/view-add ">add</a></button>--%>
+<c:if test="${size.isEmpty()}">
+    <h2>Not found any record!!</h2>
+</c:if>
+<c:if test="${not size.isEmpty()}">
+<p>Found ${totalElements} records</p>
+<button><a href="/chat-lieu/view-add ">add</a></button>
 <table class="table" border="1">
     <thead>
     <tr>
@@ -50,7 +50,7 @@
     </thead>
     <tbody>
     <tr>
-        <c:forEach items="${size}" var="sz">
+        <c:forEach items="${size.getContent}" var="sz">
         <td>${sz.id}</td>
         <td>${sz.size}</td>
         <td>${sz.ghiChu}</td>
@@ -69,18 +69,18 @@
     </tr>
 </table>
 <div>
-<%--    <c:if test="${page.getNumber() + 1 > 1}">--%>
-<%--    <a href="?page=${page.getNumber()}&id=${param.id}">--%>
-<%--        Previous--%>
-<%--    </a>--%>
-<%--    </c:if>--%>
-<%--    <span> ${page.getNumber() + 1} / ${page.getTotalPages()} </span>--%>
-<%--    <c:if test="${page.getNumber() + 1 lt page.getTotalPages()}">--%>
-<%--    <a href="?page=${page.getNumber() + 2}&id=${param.id}">--%>
-<%--        Next--%>
-<%--    </a>--%>
-<%--    </c:if>--%>
+    <c:if test="${size.getNumber + 1 > 1}">
+    <a href="?page=${size.getNumber}&id=${param.id}">
+        Previous
+    </a>
+    </c:if>
+    <span> ${size.getNumber + 1} / ${size.getTotalPages} </span>
+    <c:if test="${size.getNumber + 1 lt size.getTotalPages}">
+    <a href="?page=${size.getNumber + 2}&id=${param.id}">
+        Next
+    </a>
+    </c:if>
 </body>
 </html>
-<%--    </div>--%>
-<%--</c:if>--%>
+    </div>
+</c:if>

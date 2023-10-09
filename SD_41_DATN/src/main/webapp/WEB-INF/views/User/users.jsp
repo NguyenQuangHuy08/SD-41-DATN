@@ -13,8 +13,24 @@
     <title>Document</title>
 </head>
 <body>
-<form action="/form/add" method="post">
-    <label>Ten: <input name="tenForm"/></label>
+<form action="/user/add" method="post">
+    <label>Email: <input name="email"/></label>
+    <br>
+    <label>Mat khau: <input name="matKhau"/></label>
+    <br>
+    <label>Ten: <input name="tenUser"/></label>
+    <br>
+    <label>Gioi tinh: <input name="gioiTinh"/></label>
+    <br>
+    <label>Ngay sinh: <input name="ngaySinh"/></label>
+    <br>
+    <label>CCCD: <input name="maCCCD"/></label>
+    <br>
+    <label>Ho khau: <input name="hoKhau"/></label>
+    <br>
+    <label>SDT: <input name="soDienThoai"/></label>
+    <br>
+    <label>Dia chi: <input name="diaChi"/></label>
     <br>
     <label>Ghi Chu: <input name="ghiChu"/></label>
     <br>
@@ -25,8 +41,8 @@
     <label>Trang Thai:
         <input type="radio" name="trangThai" checked    value="1" />Hoat dong
         <input type="radio" name="trangThai"   value="0"/>Khong hoat dong
-    <br>
-    <button type="submit">add</button>
+        <br>
+        <button type="submit">add</button>
     </label>
 </form>
 <br>
@@ -36,7 +52,15 @@
     <tr>
 
         <th scope="col">id</th>
-        <th scope="col">Ten Form</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mat khau</th>
+        <th scope="col">Ten User</th>
+        <th scope="col">Gioi Tinh</th>
+        <th scope="col">Ngay Sinh</th>
+        <th scope="col">CCCD</th>
+        <th scope="col">Ho khau</th>
+        <th scope="col">So Dien Thoai</th>
+        <th scope="col">Dia chi</th>
         <th scope="col">Ghi Chu</th>
         <th scope="col">Ngay Tao</th>
         <th scope="col">Ngay Sua</th>
@@ -46,16 +70,25 @@
     </thead>
     <tbody>
     <tr>
-        <c:forEach items="${form}" var="fm">
-        <td>${fm.id}</td>
-        <td>${fm.tenForm}</td>
-        <td>${fm.ghiChu}</td>
-            <td>${fm.ngayTao}</td>
-            <td>${fm.ngaySua}</td>
-            <td>${fm.trangThai}</td>
+        <c:forEach items="${user}" var="us">
+            <td>${us.id}</td>
+            <td>${us.email}</td>
+            <td>${us.matKhau}</td>
+            <td>${us.tenUser}</td>
+            <td>${us.gioiTinh}</td>
+            <td>${us.ngaySinh}</td>
+            <td>${us.maCCCD}</td>
+            <td>${us.hoKhau}</td>
+            <td>${us.soDienThoai}</td>
+            <td>${us.diaChi}</td>
+            <td>${us.ghiChu}</td>
+            <td>${us.ngayTao}</td>
+            <td>${us.ngaySua}</td>
+            <td>${us.trangThai}</td>
+
         <td>
-            <button><a href="/form/view-update/${fm.id}">update</a></button>
-            <button><a href="/form/delete/${fm.id}">delete</a></button>
+            <button><a href="/user/view-update/${us.id}">update</a></button>
+            <button><a href="/user/delete/${us.id}">delete</a></button>
 
         </td>
     </tr>

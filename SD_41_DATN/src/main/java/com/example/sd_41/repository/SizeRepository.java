@@ -10,5 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface SizeRepository extends JpaRepository<Size, UUID> {
-//    Page<Size> findByidContains(String id, Pageable pageable);
+    Page<Size> findByidContains(String id, Pageable pageable);
 }
