@@ -681,6 +681,6 @@ select * from Size
 select * from DinhTanGiay
 select * from KieuBuoc
 
-
+---delete from KieuBuoc oke
 ---delete from GiayTheThao
 ---delete from Image where Id_Image = '079607DE-4862-480D-89C1-7CC74C29942D'
